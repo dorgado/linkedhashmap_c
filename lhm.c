@@ -1,6 +1,7 @@
-//gcc -o lhm lhm.c -Wall
-//Nome: Fellipe Sombra
-//DRE: 110093323
+/*gcc -o lhm lhm.c -Wall
+Nome: Fellipe Sombra
+DRE: 110093323
+*/
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -216,10 +217,18 @@ int main(){
 	
 	
 	int i;
+	NODE* no;
+	NODE* prox;
 	for(i=0; i<TAM_MAX; i++){
-		free(mapa->buckets[i].ultimo);
-		free(mapa->buckets[i].primeiro);
+		no = mapa->buckets[i].primeiro;	
+		while(no != NULL){
+			prox = no->prox;
+			free(no);
+			no = prox;
+		}
+
 	}
+	
 	free(mapa->buckets);
 	free(mapa);
 	return 0;
